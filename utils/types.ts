@@ -17,7 +17,7 @@ export interface ISauvetage {
   sauveteur: ISauveteur;
   date: string;
   location: string;
-  nb_morts: number;
+  nb_dead: number;
   nb_saved: number;
   saved: boolean;
 }
