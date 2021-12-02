@@ -1,0 +1,16 @@
+.wrapper {
+  padding: 1rem 10%;
+  align-items: center;
+  justify-content: center;
+  a:hover,
+  a:focus-within {
+    text-decoration: underline;
+  }
+}
+.content {
+  padding: 0 3%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
