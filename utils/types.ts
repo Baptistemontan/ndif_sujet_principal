@@ -4,7 +4,7 @@ export interface IBoat {
   type: string;
 }
 
-export interface ISauveteur {
+export interface ISavior {
   id: number;
   name: string;
   first_name: string;
@@ -14,7 +14,7 @@ export interface ISauveteur {
 export interface ISauvetage {
   id: number;
   boat: IBoat;
-  sauveteur: ISauveteur;
+  savior: ISavior;
   date: string;
   location: string;
   nb_dead: number;

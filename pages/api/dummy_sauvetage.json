@@ -10,10 +10,10 @@
     "name": "Boat 1",
     "type": "Sailboat"
   },
-  "sauveteur": {
+  "savior": {
     "id": 4,
     "name": "Davidot",
     "first_name": "David",
-    "role": "Sauveteur"
+    "role": "Savior"
   }
 }
