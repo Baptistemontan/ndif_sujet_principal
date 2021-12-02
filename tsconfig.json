@@ -22,6 +22,7 @@
       "@components/*": ["components/*"],
       "@utils/*": ["utils/*"],
       "@utils": ["utils"],
+      "@i18n": ["i18n.json"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
