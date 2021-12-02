@@ -1,18 +1,46 @@
+import { QueryDocumentSnapshot, SnapshotOptions } from "firebase/firestore";
+
 export interface IBoat {
-  id: number;
+  id: string;
   name: string;
   type: string;
 }
 
+export interface IBoatFirestore {
+  id: string;
+  nom: string;
+  type: string;
+}
+
+export const boatConverter = {
+  toFirestore: (boat: IBoat) => {
+    return {
+      name: boat.name,
+      type: boat.type,
+    };
+  },
+  fromFirestore: (
+    snapshot: QueryDocumentSnapshot<IBoatFirestore>,
+    options?: SnapshotOptions,
+  ): IBoat => {
+    const data = snapshot.data(options);
+    return {
+      id: snapshot.id,
+      name: data.nom,
+      type: data.type,
+    };
+  },
+};
+
 export interface ISavior {
-  id: number;
+  id: string;
   name: string;
   first_name: string;
   role: string;
 }
 
 export interface ISauvetage {
-  id: number;
+  id: string;
   boat: IBoat;
   savior: ISavior;
   date: string;
@@ -21,3 +49,6 @@ export interface ISauvetage {
   nb_saved: number;
   saved: boolean;
 }
+
+// TgfeRlnvbkO9n72kD94O bato
+// zL1pzx7aYfz5AJdQcLHY sauvetor
