@@ -27,7 +27,9 @@ export default function Header() {
         </div>
         <nav className={Style.nav}>
           {navs.map(({ link, local_key }) => (
-            <Link href={link}>{t(local_key)}</Link>
+            <Link key={local_key} href={link}>
+              {t(local_key)}
+            </Link>
           ))}
         </nav>
       </div>
