@@ -1,7 +1,7 @@
 export default function About() {
   return <></>;
   <header>
-    <h1<
+    <h1>
       Nuit de l'info  LesStmgDeLESIEA
     <h1>
   <header
