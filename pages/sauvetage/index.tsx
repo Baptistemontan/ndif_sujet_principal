@@ -1,7 +1,14 @@
+import { GetServerSideProps } from "next";
+
 export default function index() {
-  return (
-    <div>
-      <h1>Sauvetage</h1>
-    </div>
-  );
+  return <></>;
 }
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  return {
+    redirect: {
+      destination: "/",
+      permanent: true,
+    },
+  };
+};
