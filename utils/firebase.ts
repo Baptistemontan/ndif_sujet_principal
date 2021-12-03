@@ -1,5 +1,11 @@
 import { FirebaseOptions, initializeApp } from "firebase/app";
 import { collection, getFirestore } from "firebase/firestore";
+import {
+  boatConverter,
+  sauvetageConverter,
+  saviorConverter,
+  survivorConverter,
+} from "./converters";
 
 const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -15,7 +21,15 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 const db = getFirestore(firebaseApp);
 
-export const saviorCollection = collection(db, "sauveteur");
-export const boatCollection = collection(db, "bateau");
-export const sauvetageCollection = collection(db, "sauvetage");
-export const survivorCollection = collection(db, "survivor");
+export const saviorCollection = collection(db, "sauveteur").withConverter(
+  saviorConverter,
+);
+export const boatCollection = collection(db, "bateau").withConverter(
+  boatConverter,
+);
+export const sauvetageCollection = collection(db, "sauvetage").withConverter(
+  sauvetageConverter,
+);
+export const survivorCollection = collection(db, "survivor").withConverter(
+  survivorConverter,
+);
