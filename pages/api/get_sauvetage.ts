@@ -1,12 +1,11 @@
 import { queryToString } from "@utils";
 import { getAPI, postAPI } from "@utils/api";
+import { IBoat, ISauvetage } from "@utils/types";
 import {
   boatConverter,
-  IBoat,
-  ISauvetage,
   sauvetageConverter,
   sauvetageRefConverter,
-} from "@utils/types";
+} from "@utils/converters";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { boatCollection, sauvetageCollection } from "@utils/firebase";
 
