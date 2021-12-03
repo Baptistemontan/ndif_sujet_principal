@@ -1,8 +1,24 @@
-
+html{
+  font-size: 15px;
+  font-family: 'Open Sans', sans-serif;
+}
 
 h1 {
   text-align: center;
-  font-size: 60px;
-  color: yellow;
+  font-size: 5%;
+  color: red;
+  height: 10%;
 }
 
+h2{
+  text-align: center;
+  font-size: 3%;
+  background-color: beige;
+  width: 50%;
+
+}
+
+img{
+  display: block;
+  margin: 0 auto;
+}
