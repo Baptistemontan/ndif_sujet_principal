@@ -1,5 +1,12 @@
 import { FirebaseOptions, initializeApp } from "firebase/app";
-import { collection, getFirestore } from "firebase/firestore";
+import {
+  collection,
+  CollectionReference,
+  getDocs,
+  getFirestore,
+  query,
+  QueryConstraint,
+} from "firebase/firestore";
 import {
   boatConverter,
   sauvetageConverter,
@@ -33,3 +40,19 @@ export const sauvetageCollection = collection(db, "sauvetage").withConverter(
 export const survivorCollection = collection(db, "survivor").withConverter(
   survivorConverter,
 );
+
+// haha array function chaining go brrr
+export async function multiQuery<T extends { id: string }>(
+  collection: CollectionReference<T>,
+  ...queries: QueryConstraint[]
+) {
+  const new_queries = queries.map((q) => query(collection, q));
+  const snapshots = await Promise.all(new_queries.map((q) => getDocs(q)));
+  const results = snapshots
+    .flatMap((s) => s.docs.map((d) => d.data()))
+    .reduce(
+      (acc, cur) => (acc.has(cur.id) ? acc : acc.set(cur.id, cur)),
+      new Map<string, T>(), // bad way to filter duplicates but technically O(n) lol
+    );
+  return Array.from(results.values());
+}

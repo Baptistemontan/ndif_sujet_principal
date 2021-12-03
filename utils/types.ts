@@ -17,7 +17,7 @@ export interface ISavior {
   first_name: string;
   role: string;
   naissance: string;
-  mort: Date;
+  mort: number;
   lieu_naissance: string;
   lieu_mort: string;
   lieu_marriage: string;
@@ -29,7 +29,7 @@ export interface ISaviorFirestore {
   prenom: string;
   role: string;
   naissance: string;
-  mort: Date;
+  mort: number;
   lieu_naissance: string;
   lieu_mort: string;
   lieu_marriage: string;
