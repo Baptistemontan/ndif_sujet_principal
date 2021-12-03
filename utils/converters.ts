@@ -79,10 +79,11 @@ export const survivorConverter: FirestoreDataConverter<ISurvivor> = {
     snapshot: QueryDocumentSnapshot<ISurvivorFirestore>,
     options?: SnapshotOptions,
   ) => {
+    console.log(snapshot.data(options));
     const data = snapshot.data(options);
     return {
       id: snapshot.id,
-      name: data.nom,
+      name: data.name,
     };
   },
 };

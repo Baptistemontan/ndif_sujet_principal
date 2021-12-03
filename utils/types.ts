@@ -50,7 +50,7 @@ export interface ISurvivor {
 }
 
 export interface ISurvivorFirestore {
-  nom: string;
+  name: string;
 }
 
 export interface ISauvetage extends ISauvetageBase {
