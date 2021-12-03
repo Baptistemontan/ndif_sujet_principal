@@ -1,4 +1,10 @@
-import { QueryDocumentSnapshot, SnapshotOptions } from "firebase/firestore";
+import { async } from "@firebase/util";
+import {
+  DocumentReference,
+  getDoc,
+  QueryDocumentSnapshot,
+  SnapshotOptions,
+} from "firebase/firestore";
 
 export interface IBoat {
   id: string;
@@ -68,7 +74,7 @@ export const saviorConverter = {
       lieu_naissance: savior.lieu_naissance,
       lieu_mort: savior.lieu_mort,
       lieu_marriage: savior.lieu_marriage,
-      conjoint: savior.conjoint
+      conjoint: savior.conjoint,
     };
   },
   fromFirestore: (
@@ -86,26 +92,33 @@ export const saviorConverter = {
       lieu_naissance: data.lieu_naissance,
       lieu_mort: data.lieu_mort,
       lieu_marriage: data.lieu_marriage,
-      conjoint: data.conjoint
+      conjoint: data.conjoint,
     };
   },
 };
 
-
-export interface ISauvetage {
+export interface ISauvetageBase {
   id: string;
-  boat: IBoat;
-  savior: ISavior;
   date: string;
   location: string;
   nb_dead: number;
   nb_saved: number;
   saved: boolean;
 }
+
+export interface ISauvetage extends ISauvetageBase {
+  boat: IBoat;
+  savior: ISavior[];
+}
+
+export interface ISauvetageRef extends ISauvetageBase {
+  boat: DocumentReference<IBoatFirestore>;
+  savior: DocumentReference<ISaviorFirestore>[];
+}
 export interface ISauvetageFirestore {
   id: string;
-  bateau: IBoatFirestore;
-  sauveteur: ISaviorFirestore;
+  bateau: DocumentReference<IBoatFirestore>;
+  sauveteur: DocumentReference<ISaviorFirestore>[];
   date: string;
   lieu: string;
   nb_morts: number;
@@ -113,7 +126,7 @@ export interface ISauvetageFirestore {
   sauve: boolean;
 }
 export const sauvetageConverter = {
-  toFirestore: (sauvetage: ISauvetage) => {
+  toFirestore: (sauvetage: ISauvetageRef) => {
     return {
       bateau: sauvetage.boat,
       date: sauvetage.date,
@@ -127,7 +140,7 @@ export const sauvetageConverter = {
   fromFirestore: (
     snapshot: QueryDocumentSnapshot<ISauvetageFirestore>,
     options?: SnapshotOptions,
-  ): ISauvetage => {
+  ): ISauvetageRef => {
     const data = snapshot.data(options);
     return {
       id: snapshot.id,
@@ -141,6 +154,28 @@ export const sauvetageConverter = {
     };
   },
 };
+
+export async function sauvetageRefConverter(
+  sauvetage: ISauvetageRef,
+): Promise<ISauvetage | null> {
+  const bateauSnap = await getDoc<IBoatFirestore>(sauvetage.boat);
+  if (!bateauSnap.exists()) return null;
+  const sauveteursSnaps = await Promise.all(
+    sauvetage.savior.map((s) => getDoc<ISaviorFirestore>(s)),
+  );
+  const sauveteurs = sauveteursSnaps.map((s) => {
+    if (!s.exists()) return null;
+    return saviorConverter.fromFirestore(s);
+  });
+
+  if (sauveteurs.some((s) => s === null)) return null;
+
+  return {
+    ...sauvetage,
+    boat: boatConverter.fromFirestore(bateauSnap),
+    savior: sauveteurs as ISavior[],
+  };
+}
 
 // TgfeRlnvbkO9n72kD94O bato
 // zL1pzx7aYfz5AJdQcLHY sauvetor
