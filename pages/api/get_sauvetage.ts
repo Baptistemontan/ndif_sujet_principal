@@ -31,9 +31,7 @@ export default async function handler(
     return;
   }
 
-  const sauvetageDocRef = doc(sauvetageCollection, id).withConverter(
-    sauvetageConverter,
-  );
+  const sauvetageDocRef = doc(sauvetageCollection, id);
   const sauvetageDoc = await getDoc(sauvetageDocRef);
 
   const sauvetageRef = sauvetageDoc.data();

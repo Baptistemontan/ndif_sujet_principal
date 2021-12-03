@@ -27,7 +27,7 @@ export default async function handler(
     return;
   }
 
-  const boatDocRef = doc(boatCollection, id).withConverter(boatConverter);
+  const boatDocRef = doc(boatCollection, id);
   const boatDoc = await getDoc(boatDocRef);
 
   const boat = boatDoc.data();

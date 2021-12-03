@@ -27,7 +27,7 @@ export default async function handler(
     return;
   }
 
-  const saviorDocRef = doc(saviorCollection, id).withConverter(saviorConverter);
+  const saviorDocRef = doc(saviorCollection, id);
   const saviorDoc = await getDoc(saviorDocRef);
 
   const savior = saviorDoc.data();

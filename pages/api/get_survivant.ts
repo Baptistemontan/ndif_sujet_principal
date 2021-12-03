@@ -27,9 +27,7 @@ export default async function handler(
     return;
   }
 
-  const survivorDocRef = doc(survivorCollection, id).withConverter(
-    survivorConverter,
-  );
+  const survivorDocRef = doc(survivorCollection, id);
   const survivorDoc = await getDoc(survivorDocRef);
 
   const survivor = survivorDoc.data();
