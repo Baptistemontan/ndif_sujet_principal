@@ -42,7 +42,7 @@ export default async function handler(
   res.status(200).json(savior);
 }
 
-export async function getSurvivant(id: string) {
+export async function getSauveteur(id: string) {
   const savior = await postAPI<ISavior, { id: string }>("get_sauveteur", {
     id,
   });

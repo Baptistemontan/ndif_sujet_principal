@@ -1,10 +1,10 @@
 import { getSauveteur } from "@pages/api/get_sauveteur";
 import { queryToString } from "@utils";
-import { ISauveteur } from "@utils/types";
+import { ISavior } from "@utils/types";
 import { GetServerSideProps } from "next";
 
 interface Props {
-  sauveteur: ISauveteur;
+  sauveteur: ISavior;
 }
 
 export default function Sauveteur({ sauveteur }: Props) {
