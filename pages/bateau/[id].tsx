@@ -1,35 +1,35 @@
 import { getBateau } from "@pages/api/get_bateau";
 import { queryToString } from "@utils";
-import { IBateau } from "@utils/types";
+import { IBoat } from "@utils/types";
 import { GetServerSideProps } from "next";
 
 interface Props {
-  bateau: IBateau;
+  boat: IBoat;
 }
 
-export default function bateau({ bateau }: Props) {
-  console.log(bateau);
+export default function bateau({ boat }: Props) {
+  console.log(boat);
   return <div>bateau</div>;
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (
   context,
 ) => {
-  const bateau_id = queryToString(context.query.id);
-  if (!bateau_id) {
+  const boat_id = queryToString(context.query.id);
+  if (!boat_id) {
     return {
       notFound: true,
     };
   }
-  const bateau = await getBateau(bateau_id);
-  if (!bateau) {
+  const boat = await getBateau(boat_id);
+  if (!boat) {
     return {
       notFound: true,
     };
   }
   return {
     props: {
-      bateau,
+      boat,
     },
   };
 };

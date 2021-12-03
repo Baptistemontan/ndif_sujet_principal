@@ -42,7 +42,7 @@ export default async function handler(
   res.status(200).json(boat);
 }
 
-export async function getSurvivant(id: string) {
+export async function getBateau(id: string) {
   const boat = await postAPI<IBoat, { id: string }>("get_bateau", {
     id,
   });
