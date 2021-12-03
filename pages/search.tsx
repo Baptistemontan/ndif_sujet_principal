@@ -27,21 +27,23 @@ Props) {
   const { t } = useTranslation();
   return (
     <div className={Style.wrapper}>
-      <h2>{t("boat:boat")}</h2>
+      <h2>{`${t("boat:boat")} :`}</h2>
       <ul>
         {boats.map((boat) => (
           <li key={boat.id}>
             <Boat boat={boat} />
           </li>
         ))}
+        {boats.length === 0 && <p>{t("search:no_boat")}</p>}
       </ul>
-      <h2>{t("survivor:survivor")}</h2>
+      <h2>{`${t("survivor:survivor")} :`}</h2>
       <ul>
         {survivors.map((survivor) => (
           <li key={survivor.id}>
             <Survivor survivor={survivor} />
           </li>
         ))}
+        {survivors.length === 0 && <p>{t("search:no_survivor")}</p>}
       </ul>
     </div>
   );

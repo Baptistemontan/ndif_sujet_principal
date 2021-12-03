@@ -4,6 +4,6 @@
     "pages": {
         "*": ["common"],
         "/": ["home"],
-        "/search": ["boat", "survivor"]
+        "/search": ["boat", "survivor", "search"]
     }
 }
