@@ -8,20 +8,20 @@ interface Props {
 }
 
 export default function Sauvetage({ sauvetage }: Props) {
+  console.log(sauvetage);
   return <div>Sauvetage</div>;
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (
   context,
 ) => {
-  console.log(context.query);
   const sauvetage_id = queryToString(context.query.id);
   if (!sauvetage_id) {
     return {
       notFound: true,
     };
   }
-  const sauvetage = await getSauvetage(parseInt(sauvetage_id));
+  const sauvetage = await getSauvetage(sauvetage_id);
   if (!sauvetage) {
     return {
       notFound: true,
