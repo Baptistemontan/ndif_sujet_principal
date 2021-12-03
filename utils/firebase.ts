@@ -18,3 +18,4 @@ const db = getFirestore(firebaseApp);
 export const saviorCollection = collection(db, "sauveteur");
 export const boatCollection = collection(db, "bateau");
 export const sauvetageCollection = collection(db, "sauvetage");
+export const survivorCollection = collection(db, "survivor");
