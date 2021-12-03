@@ -10,6 +10,7 @@ import { searchSurvivant } from "./api/search_survivant";
 import Survivor from "@components/Survivor";
 import { cp } from "fs/promises";
 import useTranslation from "next-translate/useTranslation";
+import Head from "next/head";
 
 interface Props {
   searchStr: string;
@@ -27,6 +28,13 @@ Props) {
   const { t } = useTranslation();
   return (
     <div className={Style.wrapper}>
+      <Head>
+        <title>
+          {t("search:title", {
+            query: searchStr,
+          })}
+        </title>
+      </Head>
       <h2>{`${t("boat:boat")} :`}</h2>
       <ul>
         {boats.map((boat) => (

@@ -1,4 +1,5 @@
 {
   "no_boats": "Aucun bateau trouvé",
-  "no_survivors": "Aucun survivant trouvé"
+  "no_survivors": "Aucun survivant trouvé",
+  "title": "recherche pour {{ query }}"
 }
