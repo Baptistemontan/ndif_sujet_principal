@@ -1,3 +1,4 @@
+import Boat from "@components/Boat";
 import SearchBar from "@components/SearchBar";
 import Style from "@styles/Search.module.scss";
 import { queryToString } from "@utils";
@@ -6,6 +7,9 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { searchBoat } from "./api/search_bateau";
 import { searchSurvivant } from "./api/search_survivant";
+import Survivor from "@components/Survivor";
+import { cp } from "fs/promises";
+import useTranslation from "next-translate/useTranslation";
 
 interface Props {
   searchStr: string;
@@ -20,10 +24,25 @@ export default function Search({
   survivors,
 }: // saviors,
 Props) {
-  console.log(searchStr, boats, survivors);
+  const { t } = useTranslation();
   return (
     <div className={Style.wrapper}>
-      <h1>Search</h1>
+      <h2>{t("boat:boat")}</h2>
+      <ul>
+        {boats.map((boat) => (
+          <li key={boat.id}>
+            <Boat boat={boat} />
+          </li>
+        ))}
+      </ul>
+      <h2>{t("survivor:survivor")}</h2>
+      <ul>
+        {survivors.map((survivor) => (
+          <li key={survivor.id}>
+            <Survivor survivor={survivor} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

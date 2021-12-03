@@ -3,6 +3,7 @@
     "defaultLocale": "fr",
     "pages": {
         "*": ["common"],
-        "/": ["home"]
+        "/": ["home"],
+        "/search": ["boat", "survivor"]
     }
 }

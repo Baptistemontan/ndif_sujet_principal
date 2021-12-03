@@ -1,0 +1,4 @@
+{
+  "type": "boat type: {{ type }}.",
+  "boat": "boat"
+}
