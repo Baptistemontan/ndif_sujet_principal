@@ -5,7 +5,7 @@ export default function About() {
   <header>
     <meta charset="utf-8">
     <title>NTM</title>
-    <img src="images/background_header.png">
+    <img src="images/about/background_header.png">
     <link href="styles/about.module.scss" rel="stylesheet" type="text/scss">
     <h1>
       Nuit de l'info  LesStmgDeLESIEA
@@ -13,6 +13,7 @@ export default function About() {
   </header>
 
   <body>
+    <img src = "images/about/background_body.png">
     <h2>
       <p>
         Défi principal de l'évènement "La Nuit De L'Info", ce site à été créé afin de pouvoir rechercher des informations sur le site "sauveteurdudunkerquois.fr".
